@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.example.Cart" table="cart">
+        <id name="id" column="cart_id">
+            <generator class="increment" />
+        </id>
+        <property name="total" column="total" />
+        <property name="name" column="name" />
+
+        <set name="items" table="cart_item" inverse="true" fetch="select">
+            <key column="cart_id" />
+            <many-to-many column="item_id" class="com.example.Item" />
+        </set>
+    </class>
+</hibernate-mapping>
